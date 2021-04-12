@@ -22,9 +22,14 @@ https://askubuntu.com/questions/1078461/accidentally-deleted-usr-sbin-apache2-on
 Useful Mysql commands-
 grant all privileges on wordpress.* to 'wordpressuser'@'%' with grant option;
 
+grant all privileges on mysite.* to 'mysiteadmin'@'localhost' with grant option;
+
 sudo chown -R $USER:$USER /var/www/wordpress
 
 CREATE USER 'wordpress'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+
+CREATE USER 'mysiteadmin'@'localhost' IDENTIFIED BY 'password';
+
 
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER ON wordpress.* TO wordpress@localhost IDENTIFIED BY '<your-password>';
 */
