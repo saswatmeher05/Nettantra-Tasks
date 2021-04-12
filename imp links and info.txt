@@ -3,19 +3,23 @@ Install LAMP server in linux as well as Linux in windows(WSL)-
 https://medium.com/@ssharizal/how-to-install-lamp-stack-server-on-windows-subsystem-linux-wsl-windows-10-133419c22473
 
 
-Install LAMP stack with phpmyadmin in Ubuntu 20.04
+Install LAMP stack with phpmyadmin in Ubuntu 20.04-
 https://www.tecmint.com/install-lamp-with-phpmyadmin-in-ubuntu-20-04/
 
-Instal Wordpress and configure with apache server in Ubuntu 20.04
+Instal Wordpress and configure with apache server in Ubuntu 20.04-
 https://www.tecmint.com/install-wordpress-with-apache-in-ubuntu-20-04/
 
 
-uninstall lamp manually from 
+uninstall lamp manually from- 
 linux-https://gist.github.com/UbuntuEvangelist/9d115b4ca95c330ef6d2dd42f6c133c9
+
+if apache2 service is unable to start
+(error code:systemctl status apache2.service" and "journalctl -xe" for details.  failed!)-
+https://askubuntu.com/questions/1078461/accidentally-deleted-usr-sbin-apache2-on-ubuntu-18-04
 
 
 /*
-Useful Mysql commands
+Useful Mysql commands-
 grant all privileges on wordpress.* to 'wordpressuser'@'%' with grant option;
 
 sudo chown -R $USER:$USER /var/www/wordpress
