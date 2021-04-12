@@ -47,3 +47,7 @@ How to Install LAMP Apache, MySQL, PHP in Ubuntu 20.04 with ssl(for LAMP with wo
 https://www.cloudbooklet.com/how-to-install-lamp-apache-mysql-php-in-ubuntu-20-04/
 
 
+Generate Pie chart using Mysql and Php Script:
+https://www.plus2net.com/php_tutorial/chart-database.php
+
+
