@@ -31,7 +31,8 @@ sudo systemctl restart apache2
 Useful Mysql commands-
 grant all privileges on wordpress.* to 'wordpressuser'@'%' with grant option;
 
-grant all privileges on mysite.* to 'mysiteadmin'@'localhost' with grant option;
+
+grant all privileges on mysite.* to 'mysiteadmin'@'localhost' with grant option;          //working
 
 sudo chown -R $USER:$USER /var/www/wordpress
 
