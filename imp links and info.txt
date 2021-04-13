@@ -50,5 +50,8 @@ https://www.cloudbooklet.com/how-to-install-lamp-apache-mysql-php-in-ubuntu-20-0
 
 Generate Pie chart using Mysql and Php Script:
 https://www.plus2net.com/php_tutorial/chart-database.php
-
+[
+https://www.youtube.com/watch?v=KToYhYRlB-Q
+https://www.webslesson.info/2016/10/make-simple-pie-chart-by-google-chart-api-with-php-mysql.html       //working
+]
 
