@@ -59,5 +59,8 @@ wordpress wpdb classes reference-
 https://developer.wordpress.org/reference/classes/wpdb/
 
 How to setup error logging in wordpress wp-config.php-
-https://www.wpbeginner.com/wp-tutorials/how-to-set-up-wordpress-error-logs-in-wp-config/            
+https://www.wpbeginner.com/wp-tutorials/how-to-set-up-wordpress-error-logs-in-wp-config/    
+
+How to Generate PDF from Mysql Database using PHP-
+https://www.tutorialswebsite.com/how-to-generate-pdf-from-mysql-database-using-php/
 
