@@ -57,3 +57,7 @@ https://www.webslesson.info/2016/10/make-simple-pie-chart-by-google-chart-api-wi
 
 wordpress wpdb classes reference-
 https://developer.wordpress.org/reference/classes/wpdb/
+
+How to setup error logging in wordpress wp-config.php-
+https://www.wpbeginner.com/wp-tutorials/how-to-set-up-wordpress-error-logs-in-wp-config/            
+
