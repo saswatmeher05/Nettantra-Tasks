@@ -10,9 +10,9 @@ function delete_expense(){
             $table_name,
             array('id'=>$i)
         );
-        echo "Expense Deleted Successfully";
+        //echo "Expense Deleted Successfully";
     }
-    echo get_site_url() .'/wp-admin/admin.php?page=Expense_Manager';
+    //echo get_site_url() .'/wp-admin/admin.php?page=Expense_Manager';
     ?>
     <meta http-equiv="refresh" content="0; url=http://localhost/wp-admin/admin.php?page=Expense_Manager" />
    <?php

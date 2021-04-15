@@ -21,6 +21,7 @@ function jal_install() {
     item        VARCHAR(30)   NOT NULL DEFAULT '',
     quantity     INT UNSIGNED  NOT NULL DEFAULT 0,
     price        DECIMAL(7,2)  NOT NULL DEFAULT 99999.99,
+    catagory     VARCHAR(255) ,
     date         DATE,
     PRIMARY KEY  (id)
  ) $charset_collate;";
@@ -37,12 +38,20 @@ function at_try_menu() {
     //adding plugin in menu
     //Expense Manager list
     add_menu_page('expense_manager', //page title
-        'Expense_Manager', //menu title
+        'Expense List', //menu title
         'manage_options', //capabilities
         'Expense_Manager', //menu slug
         'expense_manager' //function
     );
     //adding submenu to a menu
+    //Expense Dashboard
+    add_submenu_page('Expense_Manager',//parent page slug
+        'expense_dashboard',//page title
+        'Dashboard',//menu title
+        'manage_options',//manage optios
+        'Expense_Dashboard',//slug
+        'expense_dashboard'//function
+    );
     //Add Expense
     add_submenu_page('Expense_Manager',//parent page slug
         'add_expense',//page title
@@ -51,6 +60,14 @@ function at_try_menu() {
         'Add_Expense',//slug
         'add_expense'//function
     );
+    //Expense Table using wp_list_table
+    // add_submenu_page('Expense_Manager',//parent page slug
+    //     'expense_manager_wptable',//page title
+    //     'Expense Table',//menu title
+    //     'manage_options',//manage optios
+    //     'Expense_Table',//slug
+    //     'expense_manager_wptable'//function
+    // );
     //Update Expense 
     add_submenu_page( null,//parent page slug
         'update_expense',//$page_title
@@ -67,12 +84,25 @@ function at_try_menu() {
         'Delete_Expense',// $menu_slug,
         'delete_expense'// $function
     );
+    //Generate pdf
+    add_submenu_page( null,//parent page slug
+        'generate_pdf',//$page_title
+        'Generate Pdf',// $menu_title
+        'manage_options',// $capability
+        'Generate_Pdf',// $menu_slug,
+        'generate_pdf'// $function
+    );
 }
 
 // returns the root directory path of particular plugin
 define('ROOTDIR', plugin_dir_path(__FILE__));
-require_once(ROOTDIR . 'expense_manager.php');
+require_once (ROOTDIR . 'expense_manager.php');
 require_once (ROOTDIR.'add_expense.php');
 require_once (ROOTDIR.'update_expense.php');
+require_once (ROOTDIR.'expense_dashboard.php');
 require_once (ROOTDIR.'delete_expense.php');
+require_once (ROOTDIR.'generate_pdf.php');
+require_once (ROOTDIR.'expense_manager_wptable.php');
 ?>
+
+
