@@ -67,3 +67,4 @@ https://www.tutorialswebsite.com/how-to-generate-pdf-from-mysql-database-using-p
 
 //implement wp_list_table in plugin
 https://mac-blog.org.ua/wordpress-custom-database-table-example-full/
+https://www.kvcodes.com/2014/05/wp_list_table-bulk-actions-example/
