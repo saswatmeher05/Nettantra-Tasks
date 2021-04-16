@@ -64,3 +64,6 @@ https://www.wpbeginner.com/wp-tutorials/how-to-set-up-wordpress-error-logs-in-wp
 How to Generate PDF from Mysql Database using PHP-
 https://www.tutorialswebsite.com/how-to-generate-pdf-from-mysql-database-using-php/
 
+
+//implement wp_list_table in plugin
+https://mac-blog.org.ua/wordpress-custom-database-table-example-full/
