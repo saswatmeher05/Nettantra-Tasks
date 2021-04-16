@@ -3,9 +3,10 @@
 Plugin Name: My List Table Example
 */
 ?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <div class="wrap">
 <div id="icon-users" class="icon32"></div>
-<h2>Expense Table</h2>
+<h1 class="text-secondary text-center">Expense Table</h1>
 </div>
 <?php
 //Expense table implementing wp_list_table
@@ -16,10 +17,10 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 function expense_manager_wptable(){
 
     $myListTable = new ExpenseManagerWPTable();
-    echo '<div class="wrap"><h2>Expense Table</h2>'; 
+    // echo '<div class="wrap"><h2>Expense Table</h2>'; 
     $myListTable->prepare_items(); 
     $myListTable->display(); 
-    echo '</div>'; 
+    // echo '</div>'; 
 
     // global $wpdb;
     // $table_name = $wpdb->prefix . 'expense_manager';
@@ -34,60 +35,6 @@ class ExpenseManagerWPTable extends WP_List_Table{
 
     //define data set for WP_List_Table => data
         var $data;
-
-        // var $data=array(
-        //     array(
-        //             'id'=>1, 
-        //             "item"=>"item1", 
-        //             "quantity"=>"1", 
-        //             "price"=>"30", 
-        //             "catagory"=>"cat1",
-        //             "date"=>"2021-04-15"
-        //     ),
-        //     array(
-        //             "id"=>2, 
-        //             "item"=>"item2", 
-        //             "quantity"=>"1", 
-        //             "price"=>"330", 
-        //             "catagory"=>"cat1",
-        //             "date"=>"2021-04-15"
-            
-        //         )
-        // );
-        // foreach ($expenses as $expense) {
-        //     $data=array(array(
-        //         'id' => $expense->id,
-        //         'item' => $expense->item,
-        //         'quantity' => $expense->quantity,
-        //         'price' => $expense->price,
-        //         'catagory' => $expense->catagory,
-        //         'date' => $expense->date,
-        //     ));
-        //}
-
-        //dummy data
-        // $data[]=array(
-        //     'id'=>1, 
-        //     "item"=>"item1", 
-        //     "quantity"=>"1", 
-        //     "price"=>"30", 
-        //     "catagory"=>"cat1"
-        //     );
-        // $data[]=array(
-        //     "id"=>2, 
-        //     "item"=>"item2", 
-        //     "quantity"=>"1", 
-        //     "price"=>"330", 
-        //     "catagory"=>"cat1"
-        //     );
-        // $data[]=array(
-        //     "id"=>3, 
-        //     "item"=>"item3", 
-        //     "quantity"=>"2", 
-        //     "price"=>"530", 
-        //     "catagory"=>"cat2"
-        //     );
-   
  
     //prepare_items
     function prepare_items(){
@@ -95,7 +42,7 @@ class ExpenseManagerWPTable extends WP_List_Table{
         global $wpdb;
         $table_name = $wpdb->prefix . 'expense_manager'; // do not forget about tables prefix
 
-        $per_page = 5; // constant, how much records will be shown per page
+        $per_page = 6; // constant, how much records will be shown per page
 
         $columns = $this->get_columns();
         $hidden = array();
@@ -105,7 +52,7 @@ class ExpenseManagerWPTable extends WP_List_Table{
         $this->_column_headers = array($columns, $hidden, $sortable);
 
         // [OPTIONAL] process bulk action if any
-        //$this->process_bulk_action();
+        $this->process_bulk_action();
 
         // will be used in pagination settings
         $total_items = $wpdb->get_var("SELECT COUNT(id) FROM $table_name");
@@ -168,24 +115,36 @@ class ExpenseManagerWPTable extends WP_List_Table{
 //   $this->items = $this->found_data;
     */
 
-
-
-
-
-
-
-
     }   
+
+    /**
+        * [OPTIONAL] this is example, how to render column with actions,
+        * when you hover row "Edit | Delete" links showed
+        */
+        function column_name($item){       
+       
+            $actions = array(
+                'edit'      => sprintf('<a href="?page=%s&action=%s&plugin=%s">Edit</a>','Expense_WPTable','edit',$item['ID']),
+                'delete'    => sprintf('<a href="?page=%s&action=%s&plugin=%s">Delete</a>','Expense_WPTable','delete',$item['ID']),
+            );        
+           
+            return sprintf('%1$s <span style="color:silver ; display : none;">(id:%2$s)</span>%3$s',
+                /*$1%s*/ $item['name'],
+                /*$2%s*/ $item['ID'],
+                /*$3%s*/ $this->row_actions($actions)
+            );
+        }
     
     //get_columns
     function get_columns(){
         $columns=array(
-            'id'=>'ID',
-            'item'=>'Item',
-            'quantity'=>'Quantity',
-            'price'=>'Price',
-            'catagory'=>'Catagory',
-            'date'=>'Date'
+            'id'=>__('ID', 'custom_table_example'),
+            'item'=>__('Item', 'custom_table_example'),
+            'quantity'=>__('Quantity', 'custom_table_example'),
+            'price'=>__('Price', 'custom_table_example'),
+            'catagory'=>__('Catagory', 'custom_table_example'),
+            'date'=>__('Date', 'custom_table_example')
+            
         );
         return $columns;
     }
@@ -200,6 +159,7 @@ class ExpenseManagerWPTable extends WP_List_Table{
             case 'catagory':
             case 'date':
                 return $item[$column_name];
+           
                 default: 
                     return print_r($item,true);
         }
@@ -217,6 +177,32 @@ class ExpenseManagerWPTable extends WP_List_Table{
             'date' => array('date', true)
         );
         return $sortable_columns;
+    }
+
+    function process_bulk_action()
+    {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'expense_manager'; 
+
+        if ('delete' === $this->current_action()) {
+            $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : array();
+            if (is_array($ids)) $ids = implode(',', $ids);
+
+            if (!empty($ids)) {
+                $wpdb->query("DELETE FROM $table_name WHERE id IN($ids)");
+            }
+
+        
+        }
+    }
+
+    function get_bulk_actions()
+    {
+        $actions = array(
+            'delete' => 'Delete',
+            // 'edit'=> 'Edit'
+        );
+        return $actions;
     }
 
 
